@@ -6,6 +6,13 @@ function z_upload_transport.
 *"     VALUE(IV_DATAFILE) TYPE  XSTRING
 *"     VALUE(IV_REQUEST) TYPE  TRKORR
 *"     VALUE(IV_OVERRIDE) TYPE  XSDBOOLEAN OPTIONAL
+*"     VALUE(IV_ADD_TO_IMPORT_QUEUE) TYPE  XSDBOOLEAN OPTIONAL
+*"     VALUE(IV_IMPORT) TYPE  XSDBOOLEAN OPTIONAL
+*"     VALUE(IV_IMPORT_ASYNC) TYPE  XSDBOOLEAN OPTIONAL
+*"  EXPORTING
+*"     VALUE(ET_LOGPTR) TYPE  TTOCS_TP_LOGPTR
+*"     VALUE(ET_STDOUT) TYPE  TTOCS_TP_STDOUT
+*"     VALUE(EV_TP_RETCODE) TYPE  STPA-RETCODE
 *"  EXCEPTIONS
 *"      NO_AUTHORITY
 *"      FILE_ALREADY_EXISTS
@@ -65,6 +72,23 @@ function z_upload_transport.
   endif.
   if l_error_on_write = abap_true.
     raise error_on_write.
+  endif.
+
+  if iv_add_to_import_queue = abap_true.
+    call function 'Z_ADD_REQUEST_TO_IMPORT_QUEUE'
+      exporting
+        iv_request = iv_request.
+  endif.
+
+  if iv_import = abap_true.
+    call function 'Z_IMPORT_TRANSPORT'
+      exporting
+        iv_request    = iv_request
+        iv_offline    = iv_import_async
+      importing
+        et_logptr     = et_logptr
+        et_stdout     = et_stdout
+        ev_tp_retcode = ev_tp_retcode.
   endif.
 
 endfunction.

@@ -10,6 +10,222 @@
    </INCLUDES>
    <FUNCTIONS>
     <item>
+     <FUNCNAME>Z_ADD_REQUEST_TO_IMPORT_QUEUE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Add a transport to the import queue</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_DOMNAM</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TMSDOMNAM</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_SYSTEM</PARAMETER>
+       <DEFAULT>SY-SYSID</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TMSSYSNAM</TYP>
+      </RSIMP>
+     </IMPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_DOMNAM</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>TMS: Transport Domain</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_SYSTEM</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>TMS: System Name</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>Z_IMPORT_TRANSPORT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Import transport</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_SYSTEM</PARAMETER>
+       <DEFAULT>SY-SYSID</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TMSSYSNAM</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_CLIENT</PARAMETER>
+       <DEFAULT>SY-MANDT</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>SYMANDT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OVERTAKE</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT_AGAIN</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_ORIGINALITY</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_REPAIRS</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_TRANSTYPE</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_TABLETYPE</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_PREDEC</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IGNORE_CVERS</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_TEST_IMPORT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OFFLINE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <TYP>TTOCS_TP_LOGPTR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <TYP>TTOCS_TP_STDOUT</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <TYP>STPA-RETCODE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_SYSTEM</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>TMS: System Name</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_CLIENT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Client ID</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OVERTAKE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT_AGAIN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_ORIGINALITY</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_REPAIRS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_TRANSTYPE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_TABLETYPE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_PREDEC</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IGNORE_CVERS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_TEST_IMPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OFFLINE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp Log Pointer</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp STDOUT</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return code</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>Z_UPLOAD_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Upload a transport</SHORT_TEXT>
@@ -31,7 +247,36 @@
        <OPTIONAL>X</OPTIONAL>
        <TYP>XSDBOOLEAN</TYP>
       </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
      </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <TYP>TTOCS_TP_LOGPTR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <TYP>TTOCS_TP_STDOUT</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <TYP>STPA-RETCODE</TYP>
+      </RSEXP>
+     </EXPORT>
      <EXCEPTION>
       <RSEXC>
        <EXCEPTION>NO_AUTHORITY</EXCEPTION>
@@ -61,6 +306,36 @@
        <PARAMETER>IV_OVERRIDE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp Log Pointer</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp STDOUT</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return code</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NO_AUTHORITY</PARAMETER>
