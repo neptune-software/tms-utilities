@@ -229,6 +229,19 @@
      <FUNCNAME>Z_INIT_NEPTUNE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>INIT Neptune</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LIST_STRING_ASCII</PARAMETER>
+       <TYP>STRING_TABLE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>ET_LIST_STRING_ASCII</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Container for a Packed List</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>Z_UPLOAD_TRANSPORT</FUNCNAME>
