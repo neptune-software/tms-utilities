@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>SAP Transport Managment System Utilities</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZTMS_UTILSF01</SOBJ_NAME>
+    <SOBJ_NAME>LZTMS_UTILSTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZTMS_UTILS</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>Z_UPLOAD_TRANSPORT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Upload a transport</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_COFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_DATAFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NO_AUTHORITY</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>FILE_ALREADY_EXISTS</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>ERROR_ON_WRITE</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_COFILE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_DATAFILE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NO_AUTHORITY</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>FILE_ALREADY_EXISTS</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_ON_WRITE</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
