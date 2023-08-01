@@ -226,6 +226,11 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>Z_INIT_NEPTUNE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>INIT Neptune</SHORT_TEXT>
+    </item>
+    <item>
      <FUNCNAME>Z_UPLOAD_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Upload a transport</SHORT_TEXT>
