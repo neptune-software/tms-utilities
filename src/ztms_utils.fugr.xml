@@ -49,55 +49,69 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>Z_CHECK_EXPORT_STATUS_TPSTAT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Get Transport export status</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_STATUS</PARAMETER>
+       <TYP>STRING</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ES_TPSTAT</PARAMETER>
+       <TYP>TPSTAT</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_STATUS</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ES_TPSTAT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Status of tp Calls</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>Z_DOWNLOAD_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Upload a transport</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
-       <PARAMETER>IV_COFILE</PARAMETER>
-       <TYP>XSTRING</TYP>
-      </RSIMP>
-      <RSIMP>
-       <PARAMETER>IV_DATAFILE</PARAMETER>
-       <TYP>XSTRING</TYP>
-      </RSIMP>
-      <RSIMP>
        <PARAMETER>IV_REQUEST</PARAMETER>
        <TYP>TRKORR</TYP>
       </RSIMP>
       <RSIMP>
-       <PARAMETER>IV_OVERRIDE</PARAMETER>
-       <OPTIONAL>X</OPTIONAL>
-       <TYP>XSDBOOLEAN</TYP>
-      </RSIMP>
-      <RSIMP>
-       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
-       <OPTIONAL>X</OPTIONAL>
-       <TYP>XSDBOOLEAN</TYP>
-      </RSIMP>
-      <RSIMP>
-       <PARAMETER>IV_IMPORT</PARAMETER>
-       <OPTIONAL>X</OPTIONAL>
-       <TYP>XSDBOOLEAN</TYP>
-      </RSIMP>
-      <RSIMP>
-       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <PARAMETER>IV_AS_ZIP</PARAMETER>
        <OPTIONAL>X</OPTIONAL>
        <TYP>XSDBOOLEAN</TYP>
       </RSIMP>
      </IMPORT>
      <EXPORT>
       <RSEXP>
-       <PARAMETER>ET_LOGPTR</PARAMETER>
-       <TYP>TTOCS_TP_LOGPTR</TYP>
+       <PARAMETER>EV_COFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
       </RSEXP>
       <RSEXP>
-       <PARAMETER>ET_STDOUT</PARAMETER>
-       <TYP>TTOCS_TP_STDOUT</TYP>
+       <PARAMETER>EV_DATAFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
       </RSEXP>
       <RSEXP>
-       <PARAMETER>EV_TP_RETCODE</PARAMETER>
-       <TYP>STPA-RETCODE</TYP>
+       <PARAMETER>EV_ZIP</PARAMETER>
+       <TYP>XSTRING</TYP>
       </RSEXP>
      </EXPORT>
      <EXCEPTION>
@@ -105,71 +119,38 @@
        <EXCEPTION>NO_AUTHORITY</EXCEPTION>
       </RSEXC>
       <RSEXC>
-       <EXCEPTION>FILE_ALREADY_EXISTS</EXCEPTION>
-      </RSEXC>
-      <RSEXC>
-       <EXCEPTION>ERROR_ON_WRITE</EXCEPTION>
+       <EXCEPTION>FILE_ACCESS_ERROR</EXCEPTION>
       </RSEXC>
      </EXCEPTION>
      <DOCUMENTATION>
-      <RSFDO>
-       <PARAMETER>IV_COFILE</PARAMETER>
-       <KIND>P</KIND>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>IV_DATAFILE</PARAMETER>
-       <KIND>P</KIND>
-      </RSFDO>
       <RSFDO>
        <PARAMETER>IV_REQUEST</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Request/Task</STEXT>
       </RSFDO>
       <RSFDO>
-       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <PARAMETER>IV_AS_ZIP</PARAMETER>
        <KIND>P</KIND>
        <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
       </RSFDO>
       <RSFDO>
-       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <PARAMETER>EV_COFILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
       </RSFDO>
       <RSFDO>
-       <PARAMETER>IV_IMPORT</PARAMETER>
+       <PARAMETER>EV_DATAFILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
       </RSFDO>
       <RSFDO>
-       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <PARAMETER>EV_ZIP</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>ET_LOGPTR</PARAMETER>
-       <KIND>P</KIND>
-       <STEXT>Table Type for tp Log Pointer</STEXT>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>ET_STDOUT</PARAMETER>
-       <KIND>P</KIND>
-       <STEXT>Table Type for tp STDOUT</STEXT>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>EV_TP_RETCODE</PARAMETER>
-       <KIND>P</KIND>
-       <STEXT>Return code</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NO_AUTHORITY</PARAMETER>
        <KIND>X</KIND>
       </RSFDO>
       <RSFDO>
-       <PARAMETER>FILE_ALREADY_EXISTS</PARAMETER>
-       <KIND>X</KIND>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>ERROR_ON_WRITE</PARAMETER>
+       <PARAMETER>FILE_ACCESS_ERROR</PARAMETER>
        <KIND>X</KIND>
       </RSFDO>
      </DOCUMENTATION>
