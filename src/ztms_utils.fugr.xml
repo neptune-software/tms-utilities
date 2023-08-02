@@ -49,6 +49,132 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>Z_DOWNLOAD_TRANSPORT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Upload a transport</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_COFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_DATAFILE</PARAMETER>
+       <TYP>XSTRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <TYP>TTOCS_TP_LOGPTR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <TYP>TTOCS_TP_STDOUT</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <TYP>STPA-RETCODE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NO_AUTHORITY</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>FILE_ALREADY_EXISTS</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>ERROR_ON_WRITE</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_COFILE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_DATAFILE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp Log Pointer</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp STDOUT</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return code</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NO_AUTHORITY</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>FILE_ALREADY_EXISTS</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_ON_WRITE</PARAMETER>
+       <KIND>X</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>Z_IMPORT_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Import transport</SHORT_TEXT>
@@ -240,6 +366,62 @@
        <PARAMETER>ET_LIST_STRING_ASCII</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Container for a Packed List</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>Z_INIT_NEPTUNE_ICF</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Activate Neptune ICF Services</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_ERROR</PARAMETER>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>EV_ERROR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>Z_INIT_NEPTUNE_INSTALL_CHECK</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>INIT Neptune (call /NEPTUNE/INSTALLATION_CHECK)</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LIST_STRING_ASCII</PARAMETER>
+       <TYP>STRING_TABLE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>ET_LIST_STRING_ASCII</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Container for a Packed List</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>Z_INIT_NEPTUNE_MIME</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Init Neptune Mime Repository</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_COMMIT_WORK</PARAMETER>
+       <DEFAULT>ABAP_TRUE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_COMMIT_WORK</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
