@@ -91,9 +91,9 @@ form read_file_from_applserver using    pu_file              type clike
 
   clear: pc_file, pc_no_authority, pc_file_access_error.
 
-  check pc_file is not initial.
+  check pu_file is not initial.
 
-  l_auth_filename = pc_file.
+  l_auth_filename = pu_file.
 
   call function 'AUTHORITY_CHECK_DATASET'
     exporting
@@ -109,7 +109,7 @@ form read_file_from_applserver using    pu_file              type clike
     return. ">>>>>>>>>>>
   endif.
 
-  l_filepath = pc_file.
+  l_filepath = pu_file.
 
   try.
 
