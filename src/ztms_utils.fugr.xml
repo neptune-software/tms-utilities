@@ -157,6 +157,7 @@
     </item>
     <item>
      <FUNCNAME>Z_DOWNLOAD_TRANSPORT_FROM_GIT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Download A Transport From Github</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
@@ -259,6 +260,7 @@
     </item>
     <item>
      <FUNCNAME>Z_DOWNLOAD_TRANSPORT_FROM_PRTL</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Download A Transport From Neptune Portal</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
