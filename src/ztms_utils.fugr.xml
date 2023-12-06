@@ -258,6 +258,91 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>Z_DOWNLOAD_TRANSPORT_FROM_PRTL</FUNCNAME>
+     <SHORT_TEXT>Download A Transport From Neptune Portal</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_URL</PARAMETER>
+       <TYP>STRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <TYP>TTOCS_TP_LOGPTR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <TYP>TTOCS_TP_STDOUT</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <TYP>STPA-RETCODE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_URL</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OVERRIDE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_ADD_TO_IMPORT_QUEUE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_IMPORT_ASYNC</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp Log Pointer</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp STDOUT</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return code</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>Z_IMPORT_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Import transport</SHORT_TEXT>
