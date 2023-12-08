@@ -8,6 +8,7 @@ function z_create_uninst_transport.
 *"       'trkorr-object-list'
 *"     VALUE(IV_TRANSPORT_DESCRIPTION) TYPE  TRORDERTXT OPTIONAL
 *"     VALUE(IV_RELEASE_TRANSPORT) TYPE  XSDBOOLEAN OPTIONAL
+*"     VALUE(IV_TARGET) TYPE  TR_TARGET DEFAULT 'ZNP'
 *"  EXPORTING
 *"     VALUE(ET_LOGPTR) TYPE  TTOCS_TP_LOGPTR
 *"     VALUE(ET_STDOUT) TYPE  TTOCS_TP_STDOUT
@@ -185,6 +186,7 @@ function z_create_uninst_transport.
   clear: lv_xstring, lo_zip.
 
   perform create_transpot using iv_transport_description
+                                iv_target
                           changing ev_request
                                    ev_task.
   call function 'CHECK_EXIST_DEVC'

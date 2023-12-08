@@ -169,6 +169,7 @@ endform.                    "read_file_from_applserver
 *      <--P_EV_TASK  text
 *----------------------------------------------------------------------*
 form create_transpot  using    pu_transport_description type clike
+                               pu_target                type tr_target
                       changing pc_request type trkorr
                                pc_task type trkorr.
 
@@ -184,7 +185,7 @@ form create_transpot  using    pu_transport_description type clike
   <user>-type = 'S'.
 
   if pu_transport_description  is initial.
-    lv_transport_description = 'Generated transport for MIME upload API'.
+    lv_transport_description = 'Uninstallation Transport'.
   else.
     lv_transport_description = pu_transport_description .
   endif.
@@ -195,6 +196,7 @@ form create_transpot  using    pu_transport_description type clike
       iv_type           = 'K'
       iv_text           = lv_transport_description
       iv_owner          = sy-uname
+      iv_target         = pu_target
       it_users          = lt_users
     importing
       es_request_header = ls_new_request
@@ -329,10 +331,13 @@ form release_transport  using    pu_trkorr type trkorr
 
   case lv_subrc .
     when 14 or 15.
-      perform release_in_bg_mode in program saplscts_release
-                                 using pu_trkorr
-                                 abap_true
-                                 abap_true.
+      call function 'Z_RELEASE_TR_IN_BG_MODE'
+        exporting
+          iv_trkorr     = pu_trkorr
+        exceptions
+          error_message = 1
+          others        = 2.
+
     when 0 or 11.
       " all good
     when others.
