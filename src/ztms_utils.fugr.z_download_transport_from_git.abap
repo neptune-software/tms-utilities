@@ -15,32 +15,6 @@ function z_download_transport_from_git.
 *"     VALUE(ET_STDOUT) TYPE  TTOCS_TP_STDOUT
 *"     VALUE(EV_TP_RETCODE) TYPE  STPA-RETCODE
 *"----------------------------------------------------------------------
-  types: begin of ty_workflow_run,
-           id                 type i,
-           repository_id      type i,
-           head_repository_id type i,
-           head_branch        type string,
-           head_sha           type string,
-         end of ty_workflow_run,
-
-         begin of ty_artifact,
-           id                  type i,
-           node_id             type string,
-           name                type string,
-           size_in_bytes       type i,
-           url                 type string,
-           archive_download_url type string,
-           expired             type abap_bool,
-           created_at          type string,
-           updated_at          type string,
-           expires_at          type string,
-           workflow_run        type ty_workflow_run,
-         end of ty_artifact,
-
-         begin of ty_artifacts,
-           total_count type i,
-           artifacts   type standard table of ty_artifact with non-unique default key,
-         end of ty_artifacts.
 
   data: ls_artifacts type ty_artifacts.
 

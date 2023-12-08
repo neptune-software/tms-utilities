@@ -86,6 +86,116 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>Z_CREATE_UNINST_TRANSPORT</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Create an uninstallation Transport</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_URL</PARAMETER>
+       <TYP>STRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_TOKEN</PARAMETER>
+       <TYP>STRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_NAME_TRKORRLIST_ZIP</PARAMETER>
+       <DEFAULT>&apos;trkorr-object-list&apos;</DEFAULT>
+       <TYP>STRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_TRANSPORT_DESCRIPTION</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TRORDERTXT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_RELEASE_TRANSPORT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <TYP>TTOCS_TP_LOGPTR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <TYP>TTOCS_TP_STDOUT</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <TYP>STPA-RETCODE</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_REQUEST</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_TASK</PARAMETER>
+       <TYP>TRKORR</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>EV_OK</PARAMETER>
+       <TYP>XSDBOOLEAN</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_URL</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_TOKEN</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_NAME_TRKORRLIST_ZIP</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_TRANSPORT_DESCRIPTION</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Short Description of Request</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_RELEASE_TRANSPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOGPTR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp Log Pointer</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_STDOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Table Type for tp STDOUT</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TP_RETCODE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return code</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_REQUEST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_TASK</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Request/Task</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_OK</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>Z_DOWNLOAD_TRANSPORT</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Upload a transport</SHORT_TEXT>
