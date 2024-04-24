@@ -251,6 +251,7 @@ function z_create_uninst_transport.
          exporting jsonx         = lx_actual_trkorr_list
          changing  data          = lt_trkorr_obj_list ).
 
+  delete lt_trkorr_obj_list where pgmid = 'R3TR' and object = 'TABU'. " TABU entries bring an error on releasing when the table does not exist
 
   clear: lv_xstring, lo_zip.
 
