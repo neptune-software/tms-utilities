@@ -114,6 +114,20 @@ function z_download_transport_from_git.
       name  = 'Authorization'
       value = lv_auth_value ).
 
+  " FIX FOR UPLOAD ARTIFACT V4 https://github.com/actions/upload-artifact?tab=readme-ov-file#v4---whats-new
+  " THE DOWNLOAD PERFORMS A 302 REDIRECT TO AZURE
+  " something like this:
+  " https://productionresultssa16.blob.core.windows.net/actions-results/c18b9569-a50b-4951-b10a-asdasdc72b60/workflow-job-runasdasd/artifacts/0316e1asd94c6ef31.zip
+  " ?rscd=attachment%3B+filename%3D%22signatures.zip%22&se=2024-04-24T15%3A46%3A48Z&sig=M22u4JasdqdPYBSWNI%3D&sp=r&spr=https&sr=b&st=2024-04-24T15%3A36%3A43Z&sv=2021-12-02
+  " for whatever reason sap is not able to do this correctly. so what solved the issue is to disable the redirect handling of the cl_http_client
+  " and manually creat a new request afterwards with the target and final location. that has then worked.
+  " before this fix instead of a zip file i always got an error xml response from microsoft with this content:
+  " <Error>
+  "<Code>AuthenticationFailed</Code>
+  "<Message>Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature. RequestId:xxxx Time:2024-04-24T15:47:50.6653644Z</Message>
+  "</Error>
+  lo_http_client->propertytype_redirect = if_http_client=>co_disabled.
+
   lo_http_client->send(
     exceptions
       http_communication_failure = 1
@@ -132,6 +146,55 @@ function z_download_transport_from_git.
       others                     = 4 ).
 
   check sy-subrc = 0.
+
+
+  data: lt_header_fields type tihttpnvp,
+        ls_header_field  like line of lt_header_fields.
+
+  lo_http_client->response->get_header_fields(
+    changing  fields = lt_header_fields  ).
+
+  read table lt_header_fields with key name = 'location' into ls_header_field.
+  if sy-subrc = 0 and ls_header_field-value is not initial.
+
+    cl_http_client=>create_by_url(
+      exporting
+        url                = ls_header_field-value
+      importing
+        client             = lo_http_client
+      exceptions
+        argument_not_found = 1
+        plugin_not_active  = 2
+        internal_error     = 3
+        others             = 4  ).
+
+    check sy-subrc = 0.
+
+    lo_http_client->propertytype_redirect = if_http_client=>co_disabled.
+
+    lo_http_client->request->set_header_field(
+        name  = 'Accept-Encoding'
+        value = 'gzip, deflate, br' ).
+
+    lo_http_client->send(
+      exceptions
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3
+        http_invalid_timeout       = 4
+        others                     = 5 ).
+
+    check sy-subrc = 0.
+
+    lo_http_client->receive(
+      exceptions
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3
+        others                     = 4 ).
+
+    check sy-subrc = 0.
+  endif.
 
   lv_xstring = lo_http_client->response->get_data( ).
 
