@@ -119,6 +119,17 @@
        <OPTIONAL>X</OPTIONAL>
        <TYP>TR_TARGET</TYP>
       </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_TRANSPORT_TYPE</PARAMETER>
+       <DEFAULT>&apos;DXP&apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>STRING</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_TRANSPORT_VERSION</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>STRING</TYP>
+      </RSIMP>
      </IMPORT>
      <EXPORT>
       <RSEXP>
@@ -173,6 +184,16 @@
        <PARAMETER>IV_TARGET</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Transport Target of Request</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_TRANSPORT_TYPE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>UI5 or DXP</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_TRANSPORT_VERSION</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Corresponding version UI5/DXP</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_LOGPTR</PARAMETER>
