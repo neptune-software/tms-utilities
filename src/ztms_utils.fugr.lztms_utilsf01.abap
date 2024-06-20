@@ -160,7 +160,7 @@ form read_file_from_applserver using    pu_file              type clike
 
 endform.                    "read_file_from_applserver
 *&---------------------------------------------------------------------*
-*&      Form  CREATE_TRANSPOT
+*&      Form  CREATE_TRANSPORT
 *&---------------------------------------------------------------------*
 *       text
 *----------------------------------------------------------------------*
@@ -168,7 +168,7 @@ endform.                    "read_file_from_applserver
 *      <--P_EV_REQUEST  text
 *      <--P_EV_TASK  text
 *----------------------------------------------------------------------*
-form create_transpot  using    pu_transport_description type clike
+form create_transport  using    pu_transport_description type clike
                                pu_target                type tr_target
                       changing pc_request type trkorr
                                pc_task type trkorr.
@@ -211,7 +211,7 @@ form create_transpot  using    pu_transport_description type clike
   read table lt_new_tasks into ls_new_request index 1.
   pc_task = ls_new_request-trkorr.
 
-endform.                    " CREATE_TRANSPOT
+endform.                    " CREATE_TRANSPORT
 *&---------------------------------------------------------------------*
 *&      Form  INSERT_TRKORR_INTO_TRANSPORT
 *&---------------------------------------------------------------------*
@@ -347,3 +347,105 @@ form release_transport  using    pu_trkorr type trkorr
   pc_ok = abap_true.
 
 endform.                    " RELEASE_TRANSPORT
+*&---------------------------------------------------------------------*
+*&      Form  UPDATE_TRANSPORT_NUMBER_RANGE
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*      -->P_IV_TRANSPORT_TYPE  text
+*      -->P_IV_TRANSPORT_VERSION  text
+*----------------------------------------------------------------------*
+form update_transport_number_range  using    pu_transport_type
+                                             pu_transport_version.
+
+  data lv_major type string.
+  data lv_minor type string.
+  data lv_patch type string.
+  data lv_patch_3_digits type n length 3.
+  data lv_ui5_v_numrange type n length 2. " Use dedicated number ranges for UI5 LTS versions.
+  data lv_number_range type n length 5. " Our number range, the five last digits of the transport
+  data lv_dummy type string.
+  data lv_lastnum type e070l-lastnum.
+
+  split pu_transport_version at '.' into lv_major lv_minor lv_patch.
+
+  if pu_transport_type = 'DXP'.
+
+    lv_patch = lv_patch+1. " skip first leading 0
+    split lv_patch at '-' into lv_patch lv_dummy. " In case of Release candidate or Beta release
+
+    if lv_minor = '10'.
+      " LTS Release
+      concatenate lv_major lv_patch into lv_number_range. " i.e it will be transport NPLK923006 for 23.10.0006
+    else.
+      " Innovation release - should only be relevant for current year, so major version is skipped
+      concatenate lv_minor lv_patch into lv_number_range. " number range 0 for Innovation releases. i.e NPLK906002 for 24.06.0002
+    endif.
+
+  else.
+    " Start our internal number range at 5 for UI5, i.e. NPLK95****
+    case lv_major.
+      when '1'.
+
+        case lv_minor.
+          when '38'.
+            lv_ui5_v_numrange = '50'.
+          when '71'.
+            lv_ui5_v_numrange = '51'.
+          when '84'.
+            lv_ui5_v_numrange = '52'.
+          when '96'.
+            lv_ui5_v_numrange = '53'.
+          when '108'.
+            lv_ui5_v_numrange = '54'.
+          when '120'.
+            lv_ui5_v_numrange = '55'.
+          when '132'.
+            lv_ui5_v_numrange = '56'.
+          when '144'.
+            lv_ui5_v_numrange = '57'.
+          when '156'.
+            lv_ui5_v_numrange = '58'.
+          when '168'.
+            lv_ui5_v_numrange = '59'.
+          when '180'.
+            lv_ui5_v_numrange = '60'.
+          when '192'.
+            lv_ui5_v_numrange = '61'.
+          when '204'.
+            lv_ui5_v_numrange = '62'.
+          when others.
+            lv_ui5_v_numrange = '70'.
+        endcase.
+
+      when '2'.
+        " Preparation for UI5 2.x
+        case lv_minor.
+          when '0'.
+            lv_ui5_v_numrange = '80'.
+          when '12'.
+            lv_ui5_v_numrange = '81'.
+          when '24'.
+            lv_ui5_v_numrange = '82'.
+          when '36'.
+            lv_ui5_v_numrange = '82'.
+          when others.
+            lv_ui5_v_numrange = '80'.
+        endcase.
+      when others.
+    endcase.
+
+    lv_patch_3_digits = lv_patch. " always use 3 digit format with leading zeroes for UI5 patch numbers
+    concatenate lv_ui5_v_numrange lv_patch_3_digits into lv_number_range.
+
+  endif.
+
+  " Must subtract 1 from the transport number we actually want to use
+  lv_number_range = lv_number_range - 1. " this is set as last used
+
+  concatenate sy-sysid 'K' '9' lv_number_range into lv_lastnum. " must start with 9
+
+  update e070l set trkorr = lv_lastnum where lastnum = 'TRKORR'.
+  commit work and wait.
+
+endform.                    " UPDATE_TRANSPORT_NUMBER_RANGE

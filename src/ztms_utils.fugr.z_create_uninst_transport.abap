@@ -257,7 +257,14 @@ function z_create_uninst_transport.
 
   clear: lv_xstring, lo_zip.
 
-  perform create_transpot using iv_transport_description
+**********************************************************************
+* Set transport number to use according to transport type and version
+* to avoid always getting the same transport number in Nuve
+**********************************************************************
+  perform update_transport_number_range using iv_transport_type
+                                              iv_transport_version.
+
+  perform create_transport using iv_transport_description
                                 iv_target
                           changing ev_request
                                    ev_task.
