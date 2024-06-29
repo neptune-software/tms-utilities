@@ -388,8 +388,15 @@ form update_transport_number_range  using    pu_transport_type
       when '1'.
 
         case lv_minor.
-          when '38'.
+          when '38' or '44' or '52' or '54' or '60'.
+            " Out of maintenance versions - these will have the same static numbers (perhaps with the exception of 1.38
+            " which is still maintained by SAP until Q4/2027
             lv_ui5_v_numrange = '50'.
+*            1.38.52 -> NPLK905052
+*            1.44.51 -> NPLK905051
+*            1.52.46 -> NPLK905046
+*            1.54.8  -> NPLK905008
+*            1.60.40 -> NPLK905040
           when '71'.
             lv_ui5_v_numrange = '51'.
           when '84'.
