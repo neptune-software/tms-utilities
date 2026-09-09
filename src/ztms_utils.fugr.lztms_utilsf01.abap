@@ -407,19 +407,19 @@ form update_transport_number_range  using    pu_transport_type
             lv_ui5_v_numrange = '54'.
           when '120'.
             lv_ui5_v_numrange = '55'.
-          when '132'.
+          when '136'.
             lv_ui5_v_numrange = '56'.
-          when '144'.
+          when '148'.
             lv_ui5_v_numrange = '57'.
-          when '156'.
+          when '160'.
             lv_ui5_v_numrange = '58'.
-          when '168'.
+          when '172'.
             lv_ui5_v_numrange = '59'.
-          when '180'.
+          when '184'.
             lv_ui5_v_numrange = '60'.
-          when '192'.
+          when '196'.
             lv_ui5_v_numrange = '61'.
-          when '204'.
+          when '208'.
             lv_ui5_v_numrange = '62'.
           when others.
             lv_ui5_v_numrange = '70'.

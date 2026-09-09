@@ -51,12 +51,14 @@ function z_create_uninst_transport.
         sy-sysid <> 'N23' and
         sy-sysid <> 'N22' and
         sy-sysid <> 'N21' and
-        sy-sysid <> 'N60'.
+        sy-sysid <> 'N60' and
+        sy-sysid <> 'NEP'.
 
 
   cl_http_client=>create_by_url(
     exporting
       url                = iv_url
+      ssl_id             = 'ANONYM'
     importing
       client             = lo_http_client
     exceptions
@@ -119,6 +121,7 @@ function z_create_uninst_transport.
   cl_http_client=>create_by_url(
     exporting
       url                = <ls_artifacts>-archive_download_url
+      ssl_id             = 'ANONYM'
     importing
       client             = lo_http_client
     exceptions
@@ -186,6 +189,7 @@ function z_create_uninst_transport.
     cl_http_client=>create_by_url(
       exporting
         url                = ls_header_field-value
+        ssl_id             = 'ANONYM'
       importing
         client             = lo_http_client
       exceptions
@@ -261,8 +265,9 @@ function z_create_uninst_transport.
 * Set transport number to use according to transport type and version
 * to avoid always getting the same transport number in Nuve
 **********************************************************************
-  perform update_transport_number_range using iv_transport_type
-                                              iv_transport_version.
+
+*  perform update_transport_number_range using iv_transport_type      " No longer needed when using a static system for creating the uninstallation transports.
+*                                              iv_transport_version.
 
   perform create_transport using iv_transport_description
                                 iv_target
