@@ -47,12 +47,12 @@ function z_create_uninst_transport.
                  <ls_file>            like line of lo_zip->files,
                  <ls_trkorr_obj_list> like line of lt_trkorr_obj_list.
 
-  check sy-sysid <> 'NAD' and
+  check sy-sysid <> 'NEP' and
+        sy-sysid <> 'NAD' and
+        sy-sysid <> 'N24' and
         sy-sysid <> 'N23' and
         sy-sysid <> 'N22' and
-        sy-sysid <> 'N21' and
-        sy-sysid <> 'N60' and
-        sy-sysid <> 'NEP'.
+        sy-sysid <> 'N21'.
 
 
   cl_http_client=>create_by_url(
